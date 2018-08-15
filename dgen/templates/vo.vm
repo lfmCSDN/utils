@@ -1,0 +1,41 @@
+package ${packageName};
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
+#foreach($im in ${importClasses})
+import ${im};
+#end
+
+/**
+* ${table.desc}
+*
+* Author: Created by code generator LFM
+*/
+public class ${vo.shortClassName} implements Serializable {
+
+    /** serialVersionUID */
+    private static final long         serialVersionUID = ${serialVersionUID}L;
+
+#foreach($column in ${table.columns})
+#if(${column.comment})
+    /** ${column.comment} */
+#end
+#if(${column.javaType} == "Date")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+#end
+    private ${column.javaType} ${column.camelName};
+
+#end
+
+#foreach($column in ${table.columns})
+    public ${column.javaType} get${column.firstUpperCamelName}() {
+    return ${column.camelName};
+    }
+
+    public void set${column.firstUpperCamelName}(${column.javaType} ${column.camelName}) {
+    this.${column.camelName} = ${column.camelName};
+    }
+
+#end
+}

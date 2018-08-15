@@ -1,0 +1,39 @@
+package ${packageName};
+
+#foreach($im in ${importClasses})
+import ${im};
+#end
+import com.dexcoder.dal.annotation.Table;
+import java.io.Serializable;
+
+/**
+* ${table.desc}
+*
+* Author: Created by code LFM
+* Date: ${date}
+*/
+@Table(name = "${table.name}")
+public class ${entity.shortClassName} implements Serializable {
+
+    /** serialVersionUID */
+    private static final long         serialVersionUID = ${serialVersionUID}L;
+
+#foreach($column in ${table.columns})
+#if(${column.comment})
+    /** ${column.comment} */
+#end
+    private ${column.javaType} ${column.camelName};
+
+#end
+
+#foreach($column in ${table.columns})
+    public ${column.javaType} get${column.firstUpperCamelName}() {
+        return ${column.camelName};
+    }
+
+    public void set${column.firstUpperCamelName}(${column.javaType} ${column.camelName}) {
+        this.${column.camelName} = ${column.camelName};
+    }
+
+#end
+}

@@ -1,0 +1,25 @@
+package ${packageName};
+
+import ${qo.longClassName};
+##import com.sunyard.frameworkset.core.dao.QueryCondition;
+##import com.sunyard.frameworkset.core.dao.QueryConditionTransfer;
+
+/**
+ * ${table.desc} Qct转化类
+ *
+ * Author: Created by code LFM
+ * Date: ${date}
+ */
+public class ${qct.shortClassName}  {
+
+    @Override
+    public void transNameQuery(${qo.shortClassName} qo, QueryCondition condition) {
+
+    }
+
+    @Override
+    public void transQuery(${qo.shortClassName} qo, QueryCondition condition) {
+
+    }
+
+}

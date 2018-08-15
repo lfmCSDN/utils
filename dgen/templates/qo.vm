@@ -1,0 +1,16 @@
+package ${packageName};
+
+##import com.sunyard.frameworkset.util.pages.PagingOrder;
+
+/**
+ * ${table.desc} QO
+ *
+ * Author: Created by code LFM
+ * Date: ${date}
+   */
+public class ${qo.shortClassName} {
+
+    /** serialVersionUID */
+    private static final long         serialVersionUID = ${serialVersionUID}L;
+
+}

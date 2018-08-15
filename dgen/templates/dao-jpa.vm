@@ -1,0 +1,17 @@
+package ${packageName};
+
+import ${apiDao.longClassName};
+import ${entity.longClassName};
+import ${qo.longClassName};
+import org.springframework.stereotype.Repository;
+
+/**
+ * ${table.desc} jdbc实现类
+ *
+ * Author: Created by code LFM
+ * Date: ${date}
+ */
+@Repository
+public class ${daoImpl.shortClassName} implements ${apiDao.shortClassName}{
+
+}

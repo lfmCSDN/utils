@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>自动生成</title>
+    \#set($breadcrumb="<li>自动生成</li>")
+    \#parse("common/top-share-code-core.vm")
+
+    \#parse("common/top-share-code-welkin.vm")
+</head>
+<body>
+<!-- header -->
+\#parse("common/page-header-nav.vm")
+
+<!-- body -->
+<section class="main ">
+    <div class="container-fluid user-manage">
+        <div class="wlk-top">
+            <!--查询条件-->
+            <div class="row">
+                <form class="form-horizontal " action="" method="post" name="query-form">
+                    <div class="col-lg-offset-2 col-sm-offset-1 col-md-offset-0 col-sm-10 col-md-8 col-lg-7 ">
+                        <label class="col-sm-8 text-right" for="">关键字:</label>
+                        <div class="col-sm-16 ">
+                            <input name="keyword" class="form-control input-sm" type="text"
+                                   value="$!{${qo.firstLowerClassName}.keyword}" placeholder="请输入">
+                        </div>
+                    </div>
+                    <input type="hidden" name="pageNum" value="$!{${qo.firstLowerClassName}.pageNum}">
+                    <input type="hidden" name="pageSize" value="$!{${qo.firstLowerClassName}.pageSize}">
+                    <div class="col-sm-24 col-md-8 col-lg-7 text-center btn-box">
+                        <button id="data-query" class="btn btn-sm btn-submit">查询</button>
+                        <input class=" btn btn-sm btn-reset" type="reset" value="重置"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="wlk-bottom">
+            <!--数据操作-->
+            <div class="query-operation">
+                <button id="data-add" class="btn btn-xs btn-add">增加</button>
+                \#if($result.size() > 0)
+                <button id="data-delete-all" class="btn btn-xs btn-settings">删除</button>
+                \#end
+            </div>
+
+            <!--查询结果-->
+            <div class="qurey-result table-responsive">
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th>
+                            <input class="check-all" type="checkbox">
+                        </th>
+#foreach($column in ${table.columns})
+#if(!${column.isPrimaryKey})
+                         <th>$!{column.comment}</th>
+#end
+#end
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    \#if($result.size() > 0)
+                    \#foreach($${vo.firstLowerClassName} in $result)
+#foreach($column in ${table.columns})
+#if(${column.isPrimaryKey})
+                        <tr data-id="$!{${vo.firstLowerClassName}.$!{column.camelName}}">
+                        <td>
+                            <input class="check-ls" type="checkbox">
+                        </td>
+#end
+#end
+#foreach($column in ${table.columns})
+#if(!${column.isPrimaryKey})
+                        <td>$!{${vo.firstLowerClassName}.$!{column.camelName}}</td>
+#end
+#end
+                        <td>
+                            <a href="#" class="data-modify">修改</a>
+                            <a href="#" class="data-del">删除</a>
+                        </td>
+                    </tr>
+                    \#end
+                    \#else
+                    <tr>
+                        <td colspan="${table.columns.size()}">
+                            <div class="no-data text-center">
+                                <span><i class="iconfont icon-help"></i>没有数据</span>
+                            </div>
+                        </td>
+                    </tr>
+                    \#end
+                    </tbody>
+                </table>
+                \#set($pageUrl = "/${entity.firstLowerClassName}/list")
+                #page(${result.getPageTools()} "#pluginLink($pageUrl)" "query-form")
+            </div>
+        </div>
+    </div>
+</section>
+<!--错误提示信息-->
+<div class="alert alert-danger error-msg hide">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong></strong>
+</div>
+<!--修改和新增弹出框内容-->
+<div id="modal-edit" style="display: none;">
+    <div class="modal-body">
+        <form id="form-edit" class="form-horizontal" action="">
+#foreach($column in ${table.columns})
+#if(${column.isPrimaryKey})
+            <input type="text" name="$!{column.camelName}" class="hide">
+#end
+#end
+#foreach($column in ${table.columns})
+#if(!${column.isPrimaryKey})
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="">$!{column.comment}：</label>
+                <div class="col-sm-18">
+                    <input type="text" name="$!{column.camelName}" class="form-control">
+                </div>
+            </div>
+#end
+#end
+        </form>
+    </div>
+</div>
+
+<input id="path" type="hidden" value="${rc.contextPath}">
+
+\#parse("common/bottom-share-code.vm")
+<script type="text/javascript" src="${rc.contextPath}/src/js$genPath/${entity.firstLowerClassName}.js"></script>
+</body>
+</html>
+

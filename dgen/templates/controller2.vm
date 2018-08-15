@@ -1,0 +1,72 @@
+package ${packageName};
+
+import ${qo.longClassName};
+import ${vo.longClassName};
+import ${apiBiz.longClassName};
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+
+/**
+ * ${table.desc} controller
+ *
+ * Author: Created by code generator
+ * Date: ${date}
+ */
+@Controller
+@RequestMapping("/${entity.firstLowerClassName}")
+public class ${controller.shortClassName}  {
+
+	private final static Logger LOGGER = LoggerFactory.getLogger( ${controller.shortClassName}.class );
+
+	@Autowired
+	private ${apiBiz.shortClassName} ${apiBiz.firstLowerClassName};
+
+    @RequestMapping("/list")
+    public String list(${qo.shortClassName} qo, Model model) {
+		model.addAttribute(RESULT, ${apiBiz.firstLowerClassName}.queryPageList(qo));
+		return "templates${genPath}/${entity.firstLowerClassName}";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.GET)
+	public String add(String id, Model model) {
+		if (StringUtils.isNotBlank(id)) {
+			model.addAttribute(RESULT, ${apiBiz.firstLowerClassName}.findById(id));
+		}
+		return "templates${genPath}/input";
+	}
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add (${vo.shortClassName} vo) {
+#foreach($column in ${table.columns})
+#if(!${column.isPrimaryKey})
+		vo.set$!{column.firstUpperCamelName} (null);
+#end
+#end
+		${apiBiz.firstLowerClassName}.create(vo);
+		return StringUtils.endsWith(ThreadLocalLogStorage.getClientInfo().getUrl(), ".json")? "" : "redirect:/${entity.firstLowerClassName}/list";
+	}
+
+    @RequestMapping("/get")
+    public String get (String id, Model model) {
+		model.addAttribute(RESULT, ${apiBiz.firstLowerClassName}.findById(id));
+		return "";
+	}
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update (${vo.shortClassName} vo) {
+		${apiBiz.firstLowerClassName}.update(vo);
+		return StringUtils.endsWith(ThreadLocalLogStorage.getClientInfo().getUrl(), ".json")? "" : "redirect:/${entity.firstLowerClassName}/list";
+	}
+
+    @RequestMapping("/delete")
+    public String delete (String...ids) {
+		${apiBiz.firstLowerClassName}.deleteByIds(ids);
+		return StringUtils.endsWith(ThreadLocalLogStorage.getClientInfo().getUrl(), ".json")? "" : "redirect:/${entity.firstLowerClassName}/list";
+	}
+
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <constants>
+        <!--生成时文件已存在是否覆盖 默认true-->
+        <constant name="overwrite" value="true"/>
+
+        <!--生成目标文件夹 不指定默认为运行目录-->
+        <!--<constant name="target-dir" value="/Users/liyd/project"/>-->
+
+        <!--是否运行在子模块 为true则生成代码的文件夹会到上一层(父模块)为基准 默认false -->
+        <constant name="runOnChildModule" value="true"/>
+    </constants>
+
+
+    <jdbc>
+        <!--数据库配置信息-->
+        <property name="dialect" value="db2"/>
+        <property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver"/>
+        <property name="url" value="jdbc:db2://172.16.16.251:30141/YHSJ:currentSchema=FAP;"/>
+        <property name="username" value="db2inst1"/>
+        <property name="password" value="db2inst1"/>
+    </jdbc>
+
+
+
+    <!--数据类型转换映射-->
+    <converters>
+        <convert dbType="number" javaType="java.lang.Long"/>
+        <convert dbType="VARCHAR2" javaType="java.lang.String"/>
+        <convert dbType="SYS.XMLTYPE" javaType="java.lang.String"/>
+        <convert dbType="TIMESTAMP" javaType="java.util.Date"/>
+        <convert dbType="datetime" javaType="java.util.Date"/>
+        <convert dbType="date" javaType="java.util.Date"/>
+        <convert dbType="CLOB" javaType="java.lang.String"/>
+        <convert dbType="BLOB" javaType="java.lang.Byte[]"/>
+    </converters>
+
+    <include file="tableConfig.xml"/>
+
+</config>

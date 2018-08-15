@@ -1,0 +1,14 @@
+package ${packageName};
+
+import ${entity.longClassName};
+import ${qo.longClassName};
+
+/**
+ * ${table.desc} dao 接口
+ *
+ * Author: Created by code LFM
+ * Date: ${date}
+ */
+public interface ${apiDao.shortClassName}  {
+
+}

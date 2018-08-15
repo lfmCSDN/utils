@@ -1,0 +1,21 @@
+package ${packageName};
+
+##import com.sunyard.frameworkset.core.manager.BaseManagerImpl;
+import ${apiBiz.longClassName};
+import ${entity.longClassName};
+import ${qo.longClassName};
+import ${vo.longClassName};
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+
+/**
+ * ${table.desc} manager
+ *
+ * Author: Created by code generator
+ * Date: ${date}
+ */
+@Component
+@Transactional
+public class ${biz.shortClassName} implements ${apiBiz.shortClassName} {
+}

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <!-- 方便下面XML中引用 -->
+    <constants>
+        <!-- 当前生成java代码模块名 以 . 开头-->
+        <constant name="genModule" value=""/>
+        <!-- 当前生成资源文件(.vm .js)的路径 以 / 开头 -->
+        <constant name="genPath" value=""/>
+        <!--移除前缀-->
+        <constant name="beginRemove" value="tsp"/>
+
+        <constant name="endRemove" value="S"/>
+        <!-- 基础包名 -->
+        <constant name="basePackage" value="com.ty.tybs.web.core"/>
+        <!-- 生成到哪个模块 -->
+        <constant name="genModuleName" value="tybs-all/tybs-web-manager/"/>
+    </constants>
+
+
+    <table name="tsp_job_dependent" desc="作业表依赖">
+        <!--<task name="entity"/>-->
+        <!--<task name="qo"/>-->
+        <!--<task name="vo"/>-->
+        <!--<task name="qct"/>-->
+        <!--<task name="apiDao"/>-->
+        <!--<task name="daoImpl"/>-->
+        <!--<task name="apiService"/>-->
+        <!--<task name="service"/>-->
+        <!--<task name="apiBiz"/>-->
+        <!--<task name="biz"/>-->
+        <!--<task name="controller"/>-->
+        <task name="list"/>
+        <task name="js"/>
+    </table>
+
+    <tasks>
+        <task name="entity" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <plugin name="serialVersionUIDPlugin" value="com.dexcoder.dgen.plugins.SerialVersionUIDPlugin"/>
+            <property name="template" value="templates/entity-jpa.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value=""/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.entity${genModule}"/>
+        </task>
+        <task name="qo" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <plugin name="serialVersionUIDPlugin" value="com.dexcoder.dgen.plugins.SerialVersionUIDPlugin"/>
+            <property name="template" value="templates/qo.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Qo"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.qo${genModule}"/>
+        </task>
+
+        <task name="vo" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <plugin name="serialVersionUIDPlugin" value="com.dexcoder.dgen.plugins.SerialVersionUIDPlugin"/>
+            <property name="template" value="templates/vo.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Vo"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.vo${genModule}"/>
+        </task>
+
+        <task name="qct" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <property name="template" value="templates/qct.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Qct"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.dao.qct${genModule}"/>
+        </task>
+
+        <task name="apiDao" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <property name="template" value="templates/api-dao.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Dao"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.dao${genModule}"/>
+        </task>
+
+        <task name="daoImpl"
+              class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <property name="template" value="templates/dao-jpa.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="DaoImpl"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.dao.impl${genModule}"/>
+        </task>
+
+        <task name="apiService"
+              class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <property name="template" value="templates/api-service.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Service"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.service${genModule}"/>
+        </task>
+
+        <task name="service"
+              class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <property name="template" value="templates/service.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="ServiceImpl"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.service.impl${genModule}"/>
+        </task>
+
+        <task name="apiBiz"
+              class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <property name="template" value="templates/api-manager.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Manager"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.biz${genModule}"/>
+        </task>
+
+        <task name="biz"
+              class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <property name="template" value="templates/manager.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="ManagerImpl"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.biz.impl${genModule}"/>
+        </task>
+
+        <task name="controller" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <!--<plugin name="constantsPlugin" value="com.sunyard.frameworkset.dgen.plugin.ConstantsPlugin"/>-->
+            <property name="template" value="templates/controller2.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Controller"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.controller${genModule}"/>
+        </task>
+
+        <task name="list" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <!--<plugin name="constantsPlugin" value="com.sunyard.frameworkset.dgen.plugin.ConstantsPlugin"/>-->
+            <property name="template" value="templates/list.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value=""/>
+            <property name="suffix" value=".vm"/>
+            <property name="lower" value="true"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/resources/templates${genPath}"/>
+            <property name="package" value=""/>
+        </task>
+
+        <task name="js" class="com.dexcoder.dgen.generator.DefaultCodeGenerator">
+            <!--<plugin name="constantsPlugin" value="com.sunyard.frameworkset.dgen.plugin.ConstantsPlugin"/>-->
+            <property name="template" value="templates/js.vm"/>
+            <property name="beginRemove" value="${beginRemove}"/>
+            <property name="endRemove" value="${endRemove}"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value=""/>
+            <property name="suffix" value=".js"/>
+            <property name="lower" value="true"/>
+            <property name="moduleName" value="${genModuleName}"/>
+            <property name="srcDir" value="src/main/resources/static/src/js${genPath}"/>
+            <property name="package" value=""/>
+        </task>
+    </tasks>
+</config>
+

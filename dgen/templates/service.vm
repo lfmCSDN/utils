@@ -1,0 +1,19 @@
+package ${packageName};
+
+##import com.sunyard.frameworkset.core.service.BaseServiceImpl;
+import ${apiService.longClassName};
+import ${entity.longClassName};
+import ${qo.longClassName};
+import org.springframework.stereotype.Service;
+
+/**
+ * ${table.desc} service
+ *
+ * Author: Created by code LFM
+ * Date: ${date}
+ */
+@Service
+##public class ${service.shortClassName} extends BaseServiceImpl<${entity.shortClassName}, String, ${qo.shortClassName}> implements ${apiService.shortClassName} {
+##}
+public class ${service.shortClassName} implements ${apiService.shortClassName} {
+}
